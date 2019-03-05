@@ -45,10 +45,16 @@ const displayCards = props => {
   );
 
   return (
-    <div className={Classes.container}>
-      <div className={Classes.nested}>
-        {booksdetails.map(e => cardComponent(e))}
-      </div>
+    <div>
+      {booksdetails ? (
+        <div className={Classes.container}>
+          <div className={Classes.nested}>
+            {booksdetails.map(e => cardComponent(e))}
+          </div>
+        </div>
+      ) : (
+        <div />
+      )}
     </div>
   );
 };

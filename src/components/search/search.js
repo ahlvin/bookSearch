@@ -7,7 +7,6 @@ const APIURL = "https://www.googleapis.com/books/v1/volumes?q=";
 const APIKey = "&key=AIzaSyB_3_1JbWwQBC9-zGqxoWVjIt3HHab73q4";
 class Search extends Component {
   state = {
-    onload: true,
     data: {
       searchParameter: "",
       history: [],
@@ -23,7 +22,7 @@ class Search extends Component {
     console.log("handle change fn event :=> ", e);
     const data = { ...this.state };
     data.searchParameter = e.target.value;
-    this.setState({ searchParameter: e.target.value });
+    this.setState({ data });
     console.log("handle change data", this.state, "----", e.target.value);
   };
 
