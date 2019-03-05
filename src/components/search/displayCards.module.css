@@ -1,0 +1,44 @@
+.container {
+  margin: 50px;
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 1fr;
+  grid-template-rows: auto;
+  grid-auto-rows: minmax(100px, auto);
+}
+.nested {
+  grid-column: 2;
+  grid-template-columns: 2fr 2fr;
+  grid-template-rows: auto;
+  grid-gap: 2em;
+  display: grid;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.itemOne {
+  /* grid-column: 1; */
+  /* grid-row: third-line / 4; */
+}
+.itemTwo {
+  /* grid-column: 2; */
+  /* grid-row: third-line / 4; */
+}
+
+.card {
+  padding: 0.5em;
+  border: 1px solid rgb(167, 163, 163);
+  background: #fbfcfc;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto;
+  grid-gap: 1em;
+  display: grid;
+  grid-auto-rows: minmax(100px, auto);
+}
+.cardImage {
+}
+
+.cardContent {
+  display: grid;
+  grid-template-rows: repeat(3, 0fr);
+  grid-template-columns: repeat(2, auto);
+  /* grid-auto-rows: minmax(100px, auto); */
+}
