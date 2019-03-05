@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-
+import _ from "lodash";
 import DisplayCards from "./displayCards";
 
 import Axios from "axios";
 const APIURL = "https://www.googleapis.com/books/v1/volumes?q=";
-const APIKey = "&key=AIzaSyB_3_1JbWwQBC9-zGqxoWVjIt3HHab73q4";
+
 class Search extends Component {
   state = {
     data: {
@@ -15,7 +15,7 @@ class Search extends Component {
   };
 
   getURL = (search, totalCount) => {
-    return APIURL.concat(search, "&maxResults=", totalCount, APIKey);
+    return APIURL.concat(search, "&maxResults=", totalCount);
   };
 
   handleChange = e => {
@@ -32,8 +32,9 @@ class Search extends Component {
   };
 
   handleSearch = async input => {
-    // "https://www.googleapis.com/books/v1/volumes?q=test&maxResults=10&key=AIzaSyB_3_1JbWwQBC9-zGqxoWVjIt3HHab73q4"
-    const res = await Axios.get(this.getURL("test", 20));
+    const res = await Axios.get(
+      this.getURL(this.state.data.searchParameter, 20)
+    );
     console.log("response", res);
     this.populateBookDetails(res.data.items);
   };
@@ -43,7 +44,9 @@ class Search extends Component {
     const bookDetails = [];
     res.forEach((e, i) => {
       res[i].id = e.id;
-      res[i].thumbnail = e.volumeInfo.imageLinks.smallThumbnail;
+      res[i].thumbnail = _.has(e.volumeInfo.imageLinks, "smallThumbnail")
+        ? e.volumeInfo.imageLinks.smallThumbnail
+        : "../../img/default.png";
       res[i].title = e.volumeInfo.title;
       res[i].author = e.volumeInfo.authors;
       res[i].publishedBy = e.volumeInfo.publisher;
