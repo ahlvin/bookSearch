@@ -46,7 +46,7 @@ class Search extends Component {
       res[i].id = e.id;
       res[i].thumbnail = _.has(e.volumeInfo.imageLinks, "smallThumbnail")
         ? e.volumeInfo.imageLinks.smallThumbnail
-        : "../../img/default.png";
+        : "../img/default.png";
       res[i].title = e.volumeInfo.title;
       res[i].author = e.volumeInfo.authors;
       res[i].publishedBy = e.volumeInfo.publisher;
